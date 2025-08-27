@@ -1,0 +1,38 @@
+# config/config.yaml
+exchanges:
+  binance:
+    enabled: true
+    apiKey: ${BINANCE_API_KEY}
+    secret: ${BINANCE_API_SECRET}
+    testnet: true
+    rate_limit: 1000
+    timeout: 30000
+    
+  kraken:
+    enabled: false
+    apiKey: ${KRAKEN_API_KEY}
+    secret: ${KRAKEN_API_SECRET}
+    rate_limit: 3000
+
+trading:
+  symbols:
+    - BTC/USDT
+    - ETH/USDT
+  strategies:
+    - name: "mean_reversion"
+      enabled: true
+      params:
+        period: 14
+        threshold: 2.0
+    - name: "momentum"
+      enabled: false
+      params:
+        period: 10
+  allocation:
+    max_per_trade: 0.1  # 10% of portfolio
+    max_open_trades: 5
+
+monitoring:
+  check_interval: 60  # seconds
+  profit_alert_threshold: 0.05  # 5%
+  loss_alert_threshold: -0.03  # -3%

@@ -1,0 +1,23 @@
+# config/security.yaml
+encryption:
+  key_derivation_iterations: 100000
+  salt: ${ENCRYPTION_SALT}
+
+access_control:
+  ip_whitelist:
+    - "192.168.1.0/24"
+    - "10.0.0.0/8"
+  api_permissions:
+    trading: true
+    withdrawal: false
+
+anomaly_detection:
+  trade_volume_threshold: 3.0  # standard deviations
+  price_change_threshold: 0.1  # 10% within 5 minutes
+  time_window: 300  # 5 minutes in seconds
+
+auditing:
+  log_trades: true
+  log_balance_changes: true
+  log_api_calls: true
+  retention_days: 90
